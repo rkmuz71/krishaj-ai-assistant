@@ -209,13 +209,14 @@ def start_ngrok_tunnel():
         print("\n[Info] NGROK_AUTH_TOKEN missing or empty!\n")
 
 if __name__ == "__main__":
+    import os
     print("\nStarting KRISHAJ Assistant Server...")
-    threading.Thread(target=start_ngrok_tunnel, daemon=True).start()
     
+    port = int(os.environ.get("PORT", 7860))
     demo.launch(
-        server_name="127.0.0.1",
-        server_port=PORT, 
-        share=False, 
-        inbrowser=True,
+        server_name="0.0.0.0",
+        server_port=port,
+        share=False,
+        inbrowser=False,
         css=custom_css
     )
